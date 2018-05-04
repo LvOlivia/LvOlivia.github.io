@@ -88,7 +88,7 @@ friends: [
         title: "张晓晓",
         href: "http://www.xiaopandas.com"
     },{
-        title: "鱼鳍"
+        title: "鱼鳍"，
 	href: "http://www.fish7.top"
     }
 ]
