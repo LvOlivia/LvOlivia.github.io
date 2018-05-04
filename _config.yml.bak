@@ -83,12 +83,12 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 friends: [
     {
         title: "Tinger Blog",
-        href: "http://huangxuan.me"
+        href: "http://www.littleltt.com"
     },{
         title: "张晓晓",
-        href: "www.xiaopandas.com"
+        href: "http://www.xiaopandas.com"
     },{
         title: "鱼鳍"
-	href: "www.fish7.top"
+	href: "http://www.fish7.top"
     }
 ]
