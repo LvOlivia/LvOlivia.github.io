@@ -12,11 +12,11 @@ baseurl: "/LvOlivia.github.io"         # for example, '/blog' if your blog hoste
 
 # SNS settings
 RSS: false
-weibo_username:     LvOlivia
-zhihu_username:     LvOlivia
+weibo_username:     #
+zhihu_username:     #
 github_username:    LvOlivia
 #twitter_username:  LvOlivia
-facebook_username:  LvOlivia
+facebook_username:  #
 
 
 
@@ -88,7 +88,7 @@ friends: [
         title: "张晓晓",
         href: "http://www.xiaopandas.com"
     },{
-        title: "鱼鳍"，
+        title: "鱼鳍",
 	href: "http://www.fish7.top"
     }
 ]
