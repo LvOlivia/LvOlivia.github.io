@@ -3,7 +3,7 @@ title: Tinger Blog
 SEOTitle: 小裙子的博客 | Tinger Blog
 header-img: img/home-bg.jpg
 email: 84454663@qq.com
-description: ""
+description: "生活 前端开发 CSS JavaScript  百度前端技术学院 框架"
 keyword: ""
 url: "http://www.littleltt.com"              # your host, for absolute URL
 baseurl: "/LvOlivia.github.io"         # for example, '/blog' if your blog hosted on 'host/blog'
@@ -85,9 +85,10 @@ friends: [
         title: "Tinger Blog",
         href: "http://huangxuan.me"
     },{
-        title: "Foo",
-        href: "#"
+        title: "张晓晓",
+        href: "www.xiaopandas.com"
     },{
-        title: "bar"
+        title: "鱼鳍"
+	href: "www.fish7.top"
     }
 ]
