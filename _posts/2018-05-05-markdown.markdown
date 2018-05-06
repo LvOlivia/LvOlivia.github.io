@@ -3,7 +3,7 @@ layout:     post
 title:      "关于Markdown的一些简单使用"
 subtitle:   "Hello World,Hello Markdown"
 date:       2018-05-05
-author:     "Hux"
+author:     "Tinger"
 header-img: "img/post-bg-js-version.jpg"
 tags:
     - Markdown
