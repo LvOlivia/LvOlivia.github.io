@@ -44,15 +44,23 @@ markdown: kramdown
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
 
-
+# Gitalk
+gitalk: 
+  enable: true    #用来做启用判断可以不用
+  clientID: '9693b049f90d78870a4e'    #上面生成的往这里怼
+  clientSecret: '41de6f62d3fe9b5b7c7cdb700fcc20d3e4bc6233'   #同上
+  repo: LvOlivia.github.io    #仓库名称
+  owner: LvOlivia    #github用户名
+  admin: LvOlivia
+  distractionFreeMode: true
 
 # Disqus settings
 #disqus_username: _your_disqus_short_name_
 
 # Duoshuo settings
-duoshuo_username: _your_duoshuo_short_name_
+#duoshuo_username: _your_duoshuo_short_name_
 # Share component is depend on Comment so we can NOT use share only.
-duoshuo_share: false                    # set to false if you want to use Comment without Sharing
+#duoshuo_share: false                    # set to false if you want to use Comment without Sharing
 
 
 
