@@ -38,9 +38,7 @@ layout: default
 
 <!-- Post Content -->
 <article>
-	<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-    <div id="comment"></div>
+	
     <div class="container">
         <div class="row">
 
@@ -113,6 +111,10 @@ layout: default
                 </div>
                 <!-- disqus 评论框 end -->
                 {% endif %}
+
+				<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                <div id="comment"></div>
                 
             </div>
 			
