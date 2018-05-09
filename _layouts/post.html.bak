@@ -166,7 +166,7 @@ layout: default
         appKey:'F6bhPRHF1V43dbUilx493zGo',
         notify:true,
         path: '/post/jekyll-%E6%B7%BB%E5%8A%A0-Valine-%E8%AF%84%E8%AE%BA.html',
-        placeholder:'✿评论请戳这里✿（如果只想作为游客访问，填上你喜欢的昵称就好，如果想让我更方便联系你，可以留下你的邮箱或者网址哟^_^）'
+        placeholder:'✿评论请戳这里✿（如果只想作为游客访问，填上你喜欢的昵称就好，如果想让我更方便联系你，可以留下你的邮箱或者网址哟≧ ▽ ≦）'
     })
 </script>
 
