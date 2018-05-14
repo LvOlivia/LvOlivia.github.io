@@ -58,11 +58,11 @@ tags:
 	outline: none;				/*用来取消点击后产生的虚线边框*/
 }
 .btn:active + .qd{
-	color: blue;
+    color: blue;
 }
 .btn:active +.qd:after{
-      left: 0%;
-      width: 100%;
+    left: 0%;
+    width: 100%;
 }
 ```
 
