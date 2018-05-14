@@ -22,7 +22,6 @@ tags:
 	<title></title>  
 </head>
 <body>
-	
 	<button class="btn">切换样式</button>
 	<div class="qd">前端学院</div>
 </body>
@@ -39,7 +38,7 @@ tags:
 }
 .qd:after{
 	height: 4px;
-    content: "";
+	content: "";
     width: 0;
     background: blue;
     position: absolute;
