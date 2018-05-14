@@ -61,8 +61,8 @@ tags:
 	color: blue;
 }
 .btn:active +.qd:after{
-    left: 0%;
-    width: 100%;
+      left: 0%;
+      width: 100%;
 }
 ```
 
