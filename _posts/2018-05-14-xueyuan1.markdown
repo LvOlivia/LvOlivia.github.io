@@ -60,9 +60,9 @@ tags:
 .btn:active + .qd{
     color: blue;
 }
-.btn:active +.qd:after{
-    left: 0%;
-    width: 100%;
+.btn:active + .qd:after{
+	ledt:0%;
+	width:100%;
 }
 ```
 
