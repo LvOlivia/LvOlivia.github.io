@@ -39,12 +39,12 @@ tags:
 .qd:after{
 	height: 4px;
 	content: "";
-    width: 0;
-    background: blue;
-    position: absolute;
-    top:130%;
-    left: 50%;
-    transition: all .4s;   
+	width: 0;
+	background: blue;
+	position: absolute;
+	top:130%;
+	left: 50%;
+	transition: all .4s;   
 }
 .btn{
 	background-color: white;
