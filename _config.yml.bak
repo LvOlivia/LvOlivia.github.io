@@ -44,16 +44,6 @@ markdown: kramdown
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
 
-new Valine({
-    el: '#comment' ,
-    notify:false, 
-    verify:false, 
-    appId: 'ayaP9lToORmhrAv8eyA1BTEx-gzGzoHsz',
-    appKey: 'F6bhPRHF1V43dbUilx493zGo',
-    placeholder: 'just go go',
-    path:window.location.pathname, 
-    avatar:'mm' 
-});
 
 # Disqus settings
 #disqus_username: _your_disqus_short_name_
