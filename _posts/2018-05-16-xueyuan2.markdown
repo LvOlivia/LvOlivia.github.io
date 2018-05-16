@@ -102,9 +102,9 @@ ok,先把写的代码贴上来，再进行一些分享与总结。
 把它们整合到一起，中间加上**空格**，就大功告吉啦
 
 >考虑到浏览器兼容性  
-Internet Explorer 10、Firefox、Opera 支持 transform 属性。
-Internet Explorer 9 支持替代的 -ms-transform 属性（仅适用于 2D 转换）。
-Safari 和 Chrome 支持替代的 -webkit-transform 属性（3D 和 2D 转换）。
+Internet Explorer 10、Firefox、Opera 支持 transform 属性。  
+Internet Explorer 9 支持替代的 -ms-transform 属性（仅适用于 2D 转换）。  
+Safari 和 Chrome 支持替代的 -webkit-transform 属性（3D 和 2D 转换）。  
 Opera 只支持 2D 转换。
 
 **到这里**，了解到transform的这些功能，我们亲爱的**box0**想变成设计稿上的那个图形就都不在话下了~不过，我还想提出一个点：div里面的文字是垂直居中的，我们可以用很多方式来实现这个效果。但既然今天我们学了transform,要不要活学活用，来一点新的尝试呢？  
@@ -116,11 +116,11 @@ Opera 只支持 2D 转换。
 	top:50%;
 	left: 50%;
 	-webkit-transform:translate(-50%,-50%);	/*Safari和Chrome*/
-	-moz-transform:translate(-50%,-50%);	    /*Firefox*/
+	-moz-transform:translate(-50%,-50%);	/*Firefox*/
 	transform:translate(-50%,-50%);
 }
 ```
->我来解释一下这段代码：top和left的值使内部容器的左上角位于其父容器的正中间。然后transform让其在对应轴上反向移动自己宽高的一般，从而达到居中的效果。
+>我来解释一下这段代码：top和left的值使内部容器的左上角位于其父容器的正中间。然后transform让其在对应轴上反向移动自己宽高的一半，从而达到居中的效果。
 
 hahaha，任务解决~
 ## 后记
