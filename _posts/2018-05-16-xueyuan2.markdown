@@ -101,7 +101,7 @@ ok,先把写的代码贴上来，再进行一些分享与总结。
 `transform: rotate(45deg) scale(0.5) skew(30deg,30deg) translate(10px,10px)`  
 把它们整合到一起，中间加上**空格**，就大功告吉啦
 
->考虑到浏览器兼容性
+>考虑到浏览器兼容性  
 Internet Explorer 10、Firefox、Opera 支持 transform 属性。
 Internet Explorer 9 支持替代的 -ms-transform 属性（仅适用于 2D 转换）。
 Safari 和 Chrome 支持替代的 -webkit-transform 属性（3D 和 2D 转换）。
