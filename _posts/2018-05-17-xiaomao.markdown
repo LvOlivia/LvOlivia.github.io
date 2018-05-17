@@ -19,7 +19,7 @@ tags:
 **当鼠标移过去**
 <img src="/img/in-post/post/xiaomao2.png"  />  
 <small><center>笑喵咪</center></small>  
-看到后是不是很想有一种冲动把它做出来呢？haha  
+看到这么萌的猫咪，是不是很想有一种冲动把它做出来呢？haha  
 
 现在放上代码  
 1、小喵咪安安静静呆在那儿的代码
@@ -486,7 +486,9 @@ tags:
                 transform:rotate(30deg);  /*顺时针旋转30°*/
             }
 ```
-* 在.ear里面加上过渡时间`transition: transform 1s;`
+* 在.ear里面加上过渡时间`transition: transform 1s;`  
+
+
 #### 眼睛
 眼睛的部分变换有点儿复杂，分为  
 * **红晕浮现**
@@ -512,7 +514,9 @@ tags:
                 transform: translateY(-15px);
             }
   ```
-  * 同时设置下眼皮过渡`transition: transform 1s;`
+  * 同时设置下眼皮过渡`transition: transform 1s;`  
+
+
 #### 嘴巴
 * 鼠标移到元素上时触发
 ```
