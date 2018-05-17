@@ -508,22 +508,22 @@ tags:
 * **下眼皮上移**
   * 鼠标移到元素上时触发
   ```
-   .face:hover > .eye-wrap .eye-bottom{
+  .face:hover > .eye-wrap .eye-bottom{
                 transform: translateY(-15px);
             }
   ```
   * 同时设置下眼皮过渡`transition: transform 1s;`
-  #### 嘴巴
-  * 鼠标移到元素上时触发
-  ```
-   .face:hover > .mouth-wrap .left{
+#### 嘴巴
+* 鼠标移到元素上时触发
+```
+.face:hover > .mouth-wrap .left{
                 border-radius :0% 40% 50% 50%;
              }
             .face:hover > .mouth-wrap .right{
                 border-radius :40% 0% 50% 50%;
              }
-  ```
-  * 同时设置嘴巴过渡`transition:  border-radius 1s;`  
+```
+* 同时设置嘴巴过渡`transition:  border-radius 1s;`  
 
 
-  haha，到这里，当你的鼠标移到猫咪的脸上，就能看到它可爱的笑容啦，你也可以根据自己的喜好对它做**任意**修改，变成你想要的模样哦~
+haha，到这里，当你的鼠标移到猫咪的脸上，就能看到它可爱的笑容啦，你也可以根据自己的喜好对它做**任意**修改，变成你想要的模样哦~
