@@ -108,7 +108,7 @@ tags:
   .box img:nth-of-type(2){
             transform: rotateY(-180deg);
         }
- .box:hover > img:nth-of-type(2){
+  .box:hover > img:nth-of-type(2){
             transform: rotateY(0deg);
         }
   ```
