@@ -44,7 +44,6 @@ tags:
             left: 0;
             border: 0px solid #fff;
             transform-style: preserve-3d;
-            transform-origin: right center; 
         }
         .box img{
             display: block;
