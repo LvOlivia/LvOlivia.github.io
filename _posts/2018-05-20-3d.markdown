@@ -20,7 +20,7 @@ tags:
 >其每日饭必用茶泡，喜食芥卤乳腐，吴俗呼为臭乳腐。此二物余生平所最恶者，因戏之曰：“狗无胃而食粪，以其不知臭秽，卿其狗耶？”.......芸窘而强解日：“夫粪，人家皆有之，要在食与不食之别耳。然君喜食蒜，妾亦强映之。腐不敢强，瓜可扼鼻略尝，入咽当知其美，此犹无益貌丑而德美也。”余笑曰：“卿陷我作狗耶？”芸曰：“妾作狗久矣，屈君试尝之。”以箸强塞余口。
 
 ## 正文
-5.20的附加感慨已完，现在来说今天完成的任务。通过纯CSS 实现一个立方体翻转的效果，其中用到CSS animation keyframes、CSS transform 3D 变形等属性。详情请参见[设计师学院任务五](http://ife.baidu.com/course/detail/id/32()
+5.20的附加感慨已完，现在来说今天完成的任务。通过纯CSS 实现一个立方体翻转的效果，其中用到CSS animation keyframes、CSS transform 3D 变形等属性。详情请参见[设计师学院任务五](http://ife.baidu.com/course/detail/id/32)
 
 ok,**先放上代码**
 ```
@@ -171,7 +171,7 @@ ok,**先放上代码**
 >在这里说明一下为什么**移动的都是152px**，这是因为边框有2px，也要算进来
 
 好，我们现在来看一下做出来的立方体效果图  
-<img src="/img/in-post/post/div1.png"  /><small><center>立方体</center></small>  
+<img src="/img/in-post/post/div2.png"  /><small><center>立方体</center></small>  
 
 任务完成一半了，接下来我们给它加的效果是，鼠标放上去，立方体绕Y轴旋转。这又要用到一个新的东西了，CSS3 animation属性。
 
