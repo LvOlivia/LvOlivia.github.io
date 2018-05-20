@@ -1,0 +1,213 @@
+---
+layout:     post
+title:      "百度前端技术学院（五）"
+subtitle:   " 纯 CSS 制作绕中轴旋转的立方体"
+date:       2018-05-20
+author:     "Tinger"
+header-img: "img/post-bg-js-version.jpg"
+tags:
+    - 百度前端技术学院
+---
+> “若布衣暖，菜饭饱，一室雍雍，优游泉石，如沧浪亭、萧爽楼之处境，真成烟火神仙矣。”  
+                                                    ——沈复 《浮生六记》
+
+## 前言
+近日闲暇之余在读《浮生六记》，十分醉心于其幽雅之趣。这是清朝沈复的一本自传性散文，记述了自已与大自己三岁的妻子芸之间平凡的家居生活、闺房之乐，只可惜芸娘早逝，作者由此发出“奉劝世间夫妇，固不可彼此相仇，亦不可过于情笃。语云：恩爱夫妻不到头”的感叹。但人生似柳絮散去幻幻真真，若能在此前的时光中，过出这么**快活风流、清暖温柔**的味道来，其他又有何要紧？  
+
+今天是5月20日，就祝天下所有有情人能像沈复和芸娘这般伉俪情深，琴瑟和鸣吧！
+
+分享《浮生六记》中我很喜欢的一个小段落，虽是闲话家常，我却觉得若是心意相通，就是夫妻间抬杠拌嘴这样极平凡的小事也是顶浪漫的
+>其每日饭必用茶泡，喜食芥卤乳腐，吴俗呼为臭乳腐。此二物余生平所最恶者，因戏之曰：“狗无胃而食粪，以其不知臭秽，卿其狗耶？”.......芸窘而强解日：“夫粪，人家皆有之，要在食与不食之别耳。然君喜食蒜，妾亦强映之。腐不敢强，瓜可扼鼻略尝，入咽当知其美，此犹无益貌丑而德美也。”余笑曰：“卿陷我作狗耶？”芸曰：“妾作狗久矣，屈君试尝之。”以箸强塞余口。
+
+## 正文
+5.20的附加感慨已完，现在来说今天完成的任务。通过纯CSS 实现一个立方体翻转的效果，其中用到CSS animation keyframes、CSS transform 3D 变形等属性。详情请参见[设计师学院任务五](http://ife.baidu.com/course/detail/id/32()
+
+ok,**先放上代码**
+```
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Title</title>  
+    <style>  
+        .stage{
+            perspective: 400px;
+            width: 150px;
+            height:150px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -75px;
+            margin-top: -75px;
+        }   
+        .container{
+            width: 150px;
+            height:150px;
+            position: absolute;
+            left: 0;
+            transform-style: preserve-3d;
+            transform-origin: center center 75px;
+        }   
+        .container .side{
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border:2px solid #2f92f0;
+            background:#0064ff3d;
+        }   
+        .left{
+            left:-152px;
+            transform: rotateY(90deg);
+            transform-origin: right;
+        }   
+        .right{
+            left:152px;
+            transform: rotateY(-90deg);
+            transform-origin: left;
+        }   
+        .top{
+            top:-152px;
+            transform: rotateX(-90deg);
+            transform-origin: bottom;
+        }   
+        .bottom{
+            top:152px;
+            transform: rotateX(90deg);
+            transform-origin: top;
+        }   
+        .front{
+            transform: translateZ(152px);
+            z-index:1;
+        }   
+        .back{
+            z-index:0;
+        }
+        @keyframes rotate-frame{
+            0%{
+                transform: rotateY(0deg);
+            }
+            100%{
+                transform: rotateY(-360deg);
+            }
+        }   
+        .container:hover{    
+            animation: rotate-frame 6s infinite linear;   
+        }   
+    </style>  
+</head>  
+<body>  
+    <div class="stage">  
+        <div class="container">  
+            <div class="side front"></div>  
+            <div class="side back"></div>  
+            <div class="side left"></div>  
+            <div class="side right"></div>  
+            <div class="side top"></div>  
+            <div class="side bottom"></div>  
+        </div>  
+    </div>  
+</body>  
+</html>  
+```
+一个立方体，鼠标放上去之后开始绕Y轴，旋转。这要怎么实现？一步步来，我们先把这个立方体完成，设置好舞台、容器，然后往容器里面加六个div,然后div怎么布局呢？这就要运用到你的小学数学知识了  
+<img src="/img/in-post/post/div1.png"  /><small><center>div布局</center></small>  
+然后，对每个平面进行旋转，让其变成一个立方体  
+* 对于**舞台**，我们给它加个视距，800px
+`perspective: 400px;`
+* 对于**容器**（即那个施加动画的元素），加个3D视图说明
+`transform-style: preserve-3d;`  
+* 对于**左**div,左面以右边为旋转基点，绕Y轴旋转顺时针90deg
+```
+.left{
+            left:-152px;
+            transform: rotateY(90deg);
+            transform-origin: right;
+        }   
+```
+* 对于**右**div,右面以左边为旋转基点，绕Y轴旋转逆时针90deg
+```
+ .right{
+            left:152px;
+            transform: rotateY(-90deg);
+            transform-origin: left;
+        }   
+```
+* 对于**上**div,上面以下边为旋转基点，绕X轴旋转逆时针90deg
+```
+.top{
+            top:-152px;
+            transform: rotateX(-90deg);
+            transform-origin: bottom;
+        }   
+```
+* 对于**下**div,下面以上边为旋转基点，绕X轴旋转顺时针90deg
+```
+.bottom{
+            top:152px;
+            transform: rotateX(90deg);
+            transform-origin: top;
+        }   
+```
+* 对于**前**div,前面沿着Z轴方向平移152px
+```
+.front{
+            transform: translateZ(152px);
+            z-index:1;
+        }   
+```
+* 对于**后**div，z-index设置为0，比前面的z-index值小，叠加顺序上在其之下
+``` 
+ .back{
+            z-index:0;
+        }
+```
+* 给立方体加上背景颜色,这里用了rgba模式
+```
+ .container .side{
+            background:#0064ff3d;
+        }   
+```
+
+>在这里说明一下为什么**移动的都是152px**，这是因为边框有2px，也要算进来
+
+好，我们现在来看一下做出来的立方体效果图  
+<img src="/img/in-post/post/div1.png"  /><small><center>立方体</center></small>  
+
+任务完成一半了，接下来我们给它加的效果是，鼠标放上去，立方体绕Y轴旋转。这又要用到一个新的东西了，CSS3 animation属性。
+
+**来看一下它要怎么用**
+* 先在@keyframe关键词后面定义一个新的关键帧规则，并给这个动画命名，例如：
+```
+@keyframe pulse{
+    100%{
+        text-shadow:0 0 5px #bbb;
+        box-shadow:0 0 3px #bbb;
+    }
+}
+```
+* 使用关键帧动画的方法
+```
+.flipper:hover .flipper-horizontal{
+    transform:rotateY(180deg);
+    animation:pulse 1s 1s infinite alternate both;
+}
+```
+此时的animate属性使用了缩写语法。在本例中，我们实际定义了（依照定义顺序）使用的关键帧规则的名字(pulse)、动画持续时长(1s)、动画开始延迟(1s)、动画运行的次数(infinite，无限次)、动画播放方向(alternate，交替)、最后我们想让animation-fill-mode保留动画中无论是顺序播放还是倒序播放后的值(both)。
+
+如果你想了解更多请参见[W3C](http://www.w3school.com.cn/cssref/pr_animation.asp)  
+
+好的，知道了animation怎么用，我们就可以让这个立方体无限制地旋转起来啦，看以下代码
+```
+@keyframes rotate-frame{
+            0%{
+                transform: rotateY(0deg);
+            }
+            100%{
+                transform: rotateY(-360deg);
+            }
+        }   
+        .container:hover{    
+            animation: rotate-frame 6s infinite linear;   
+        }   
+```
+**到这里**，就全部完成啦。我们创建一个关键帧规则，让这个叫"rotate-frame"的动画在六秒之内完成一次绕Y轴从0到-360°的旋转，这个速度是匀速的，但因为定义了infinite,所以它会一直旋转下去，直到你的鼠标从立方体上移开。
