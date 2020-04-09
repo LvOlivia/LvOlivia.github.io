@@ -67,7 +67,15 @@ ga_domain: littleltt.com
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "如果你越来越冷漠，你以为你成长了，但其实没有。长大应该是变温柔，对全世界都温柔ღ"
+sidebar-about-description: "如果你来访我
+
+                            我不在
+
+                            请和我门外的花坐一会儿
+
+                            它们很温暖
+                            
+                            我注视他们很多很多日子了"
 sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
