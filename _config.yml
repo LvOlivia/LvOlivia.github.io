@@ -11,7 +11,7 @@ baseurl: "/LvOlivia.github.io"         # for example, '/blog' if your blog hoste
 
 
 # SNS settings
-RSS: false
+RSS: true
 weibo_username:     是你的小裙子呀
 zhihu_username:     LvOlivia
 github_username:    LvOlivia
@@ -67,14 +67,14 @@ ga_domain: littleltt.com
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "如果你来访我
-
-                            我不在
-
-                            请和我门外的花坐一会儿
-
-                            它们很温暖
-                            
+sidebar-about-description: "如果你来访我\n
+                            \n
+                            我不在\n
+                            \n
+                            请和我门外的花坐一会儿\n
+                            \n
+                            它们很温暖\n
+                            \n
                             我注视他们很多很多日子了"
 sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
