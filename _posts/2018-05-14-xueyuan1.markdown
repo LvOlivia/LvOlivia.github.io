@@ -4,7 +4,7 @@ title:      "百度前端技术学院（一）"
 subtitle:   "制作一个简单的菜单动画效果"
 date:       2018-05-14
 author:     "Tinger"
-header-img: "/img/home-bg.jpg"
+header-img: "/img/about-bg.jpg"
 tags:
     - 百度前端技术学院
 ---

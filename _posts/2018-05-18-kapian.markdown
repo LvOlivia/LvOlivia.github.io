@@ -4,7 +4,7 @@ title:      "百度前端技术学院（四）"
 subtitle:   " 3D 空间的卡片翻转动效"
 date:       2018-05-18
 author:     "Tinger"
-header-img: "/img/home-bg.jpg"
+header-img: "/img/about-bg.jpg"
 tags:
     - 百度前端技术学院
 ---

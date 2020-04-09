@@ -4,7 +4,7 @@ title:      "百度前端技术学院（三）"
 subtitle:   "CSS transition 和 CSS transform 配合制作动画"
 date:       2018-05-17
 author:     "Tinger"
-header-img: "/img/home-bg.jpg"
+header-img: /img/about-bg.jpg"
 tags:
     - 百度前端技术学院
 ---
