@@ -4,7 +4,7 @@ title:      "百度前端技术学院（五）"
 subtitle:   " 纯 CSS 制作绕中轴旋转的立方体"
 date:       2018-05-20
 author:     "Tinger"
-header-img: "/img/avatar-hux.jpg"
+header-img: "/img/home-bg.jpg"
 tags:
     - 百度前端技术学院
 ---
