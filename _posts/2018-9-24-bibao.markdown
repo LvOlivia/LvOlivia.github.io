@@ -1,0 +1,96 @@
+---
+layout:     post
+title:      "原生JS"
+subtitle:   "闭包问题和应用场景"
+date:       2018-09-24
+author:     "Tinger"
+header-img: "/img/about-bg.jpg"
+tags:
+    - JS基础
+---
+## 闭包导致的问题
+一个经典案例
+```
+for(var i = 1 ; i <= 5 i ++) {
+    setTimeout(function timer () {
+        console.log(i)
+    }, i * 1000)
+}
+```
+你可能会天真的以为它会输出：1,2,3,4,5？
+事实上，它会以每秒一次的频率输出5次6
+为什么？
+因为延迟函数会在循环结束时才执行。就算你setTimeout(...,0)，也会在循环完成时，输出5次6
+当然，不要以为主要的原因是延迟函数会在循环结束时才执行，不然我为什么会在闭包这一节用使用这个例子，哈哈。
+那么真正导致这个与预期不符的是闭包
+首先内部函数timer()有着涵盖for循环的闭包，这5次调用timer()都是封闭在同一个作用域中，他们共享同一个i，只有一个i
+那么我们如何让它按照我们的预期，输出1,2,3,4,5呢？
+当然是让每个timer(),都有一个属于自己的i，这里的解决方案给出两种
+### 块作用域
+ES6中的const或者let，它们都可以构造一个块级作用域（PS：const 定义常量，无法被修改）
+```
+for(var i = 1 ; i <= 5; i ++) {
+    const j = i
+    setTimeout(function timer () {
+        console.log(j)
+    }, j * 1000)
+}
+```
+另外我们可以用let稍微改进一下
+```
+for(let i = 1 ; i <= 5; i ++) {
+    setTimeout(function timer () {
+        console.log(i)
+    }, i * 1000)
+}
+```
+上面代码中，变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量，所以最后输出的是6。你可能会问，如果每一轮循环的变量i都是重新声明的，那它怎么知道上一轮循环的值，从而计算出本轮循环的值？这是因为 JavaScript 引擎内部会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算。
+
+另外，for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。
+```
+for (let i = 0; i < 3; i++) {
+  let i = 'abc';
+  console.log(i);
+}
+// abc
+// abc
+// abc
+```
+上面代码正确运行，输出了 3 次abc。这表明函数内部的变量i与循环变量i不在同一个作用域，有各自单独的作用域。
+### IIFE立即执行函数
+IIFE立即执行函数可以形成一个块作用域，我们只需要把每次迭代的i，保存在timer()的块作用域中，通过这个保存的值打印出来就ok了
+```
+for(var i = 1 ; i <= 5; i ++) {
+  (function() {
+    var j = i
+    setTimeout(function timer () {
+      console.log(j)
+    }, j * 1000)
+  }
+  )(i)
+}
+```
+## 闭包的一些应用场景
+### 缓存
+```
+const add = a => b => a + b;
+const num = add(1);
+num(2);
+num(3);
+```
+预先设置参数
+### 私有变量
+使用闭包封装私有变量
+这种方法把一些变量封装在闭包的内部，只暴露一些接口跟外界通信：
+```
+var user = (function(){
+    var name = 'ltt',
+    vat age = 22;
+    return {
+        getUserInfo: function(){
+            return name + ':' + age;
+        }
+    }
+})();
+alert(user.getUserInfo());
+```
