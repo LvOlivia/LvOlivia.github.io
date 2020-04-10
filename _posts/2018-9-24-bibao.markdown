@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "原生JS"
+title:      "闭包（二）"
 subtitle:   "闭包问题和应用场景"
 date:       2018-09-24
 author:     "Tinger"
