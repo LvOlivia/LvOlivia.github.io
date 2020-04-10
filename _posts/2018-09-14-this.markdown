@@ -1,3 +1,4 @@
+---
 layout:     post
 title:      "你不知道的JS"
 subtitle:   "this用法"
@@ -101,7 +102,7 @@ console.log(bar.a); // 2
 四种情况优先级：
 new绑定 >显式绑定 > 隐式绑定 > 默认绑定
 
-##箭头函数
+## 箭头函数
 箭头函数的this指向不会使用上述的四条规则：
 ```
 function foo() {
