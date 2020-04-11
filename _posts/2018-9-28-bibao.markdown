@@ -1,0 +1,103 @@
+---
+layout:     post
+title:      "JS对象（二）"
+subtitle:   "创建对象"
+date:       2018-09-28
+author:     "Tinger"
+header-img: "/img/about-bg.jpg"
+tags:
+    - JS基础
+---
+## JS创建对象
+### 使用工厂模式创建对象
+```
+function createPerson(name,age,job)
+{ var o = new Object(); 
+o.name = name; 
+o.age = age; 
+o.job = job; 
+o.sayName = function()
+{  alert(this.name);  };
+ return o;
+ }
+var person1 = createPerson('Nike',29,'teacher');
+var person2 = createPerson('Arvin',20,'student');
+```
+在使用工厂模式创建对象的时候，我们都可以注意到，在createPerson函数中，返回的是一个对象。那么我们就无法判断返回的对象究竟是一个什么样的类型,于是出现构造函数模式
+### 使用构造函数创建对象
+```
+function Person(name,age,job)
+{ this.name = name; 
+this.age = age; 
+this.job = job; 
+this.sayName = function(){ alert(this.name); }; 
+}
+var person1 = new Person('Nike',29,'teacher');
+var person2 = new Person('Arvin',20,'student');
+```
+对比工厂模式，我们可以发现以下区别：
+
+1.没有显示地创建对象
+
+2.直接将属性和方法赋给了this对象
+
+3.没有return语句
+
+4.终于可以识别的对象的类型。对于检测对象类型，我们应该使用instanceof操作符，我们来进行自主检测
+
+构造函数也有它的缺点：每个对象里面都有公用的函数，意味着每次创建都会穿件这个函数，因此可以这个函数放到外面，但是会污染全局作用域。就是每个方法都要在每个实例上重新创建一遍，方法指的就是我们在对象里面定义的函数。如果方法的数量很多，就会占用很多不必要的内存。于是出现了原型模式
+## 原型模式
+```
+function Person(){}
+Person.prototype.name = 'Nike';
+Person.prototype.age = 20;
+Person.prototype.jbo = 'teacher';
+Person.prototype.sayName = function(){ alert(this.name);};
+var person1 = new Person();person1.sayName()
+```
+使用原型创建对象的方式，可以让所有对象实例共享它所包含的属性和方法
+1.理解原型对象
+无论什么时候，只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。在默认情况下，所有原型对象都会自动获得一个constructor(构造函数)属性，这个属性指向prorotype属性所在的函数。这样一来函数和函数的原型对象就连通了。
+创建了自定义的构造函数之后，其原型对象默认只会取得constructor属性，剩下的方法都是从Object继承而来的。当调用构造函数创建一个新实例后，该实例的内部将包含一个指针[[Prototype]](就是文章最开始提到的内部属性)，指向构造函数的原型对象。
+>1.我们可以通过一个方法来判断一个对象实例A是否指向某个构造函数B的原型对象。B.protorype.isProtorypeOf(A) //是则返回ture
+2.ECMAScript5增加了一个新方法，Object.getPrototypeOf(A)返回的对象实际就是一个对象的原型
+3.使用hasOwnProperty()方法可以检测一个属性是存在于实例中，还是存在于原型中，这个方法是从Object中继承来的，它只在给定属性存在于对象实例中的时候才返回true
+
+### 原型与in操作符
+in操作符。有两种方式可以使用in操作符，单独使用和在for……in中使用。在单独使用的时候，in操作符会在通过对象能够访问到给定属性的时候返回true，不管属性是在对象实例中，还是在原型中，只要有就返回true，只有实例和原型中都没有，才返回false
+在使用for-in循环时，返回的时所有能够通过对象访问的、可枚举的属性，包括实例和原型。屏蔽了原型中不可枚举属性的实例属性也会在for-in循环返回。
+### 更简单的原型语法
+其实这种方式相当于重写了构造函数默认的原型对象，所以原型对象的constructor属性不再指向Person构造函数了，而是指向了Object构造函数，不过我们可以强制把constructor的指向拉回来。
+### 原型的动态性
+重写原型切断了现有原型与任何之前已经存在的对象实例之间的联系。
+### 原型的模式的缺点
+但是对于引用类型的值来说，修改一个实例的属性值就会影响到所有实例。
+## 组合使用构造函数模式和原型模式
+```
+function Person(name,age,job)
+{ this.name =name; 
+this.age = age;
+ this.job = job;}
+Person.prototype = { 
+constructor:Person,
+ sayName: function()
+{ alert(this.name); };
+}
+var person1 = new Person('Nike',20,'teacher');
+```
+创建自定义类型的最常见方式，就是组合使用构造函数模式和原型模式实例属性都是在构造函数中定义的，而所有实例共享的属性constructor和方法sayName()则是在原型中定义。这种模式是ECMAScript中使用最广泛，认可度最高的一种创建自定义类型的方法，可以说这是用来定义引用类型的一种默认模式。
+## 动态原型模式
+```
+function Person(name,age,job){
+    //属性
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    //方法
+    if(typeof this.sayName != "function"){
+        Person.prototype.sayName = function(){
+            alert(this.name);
+        }
+    }
+}
+```
