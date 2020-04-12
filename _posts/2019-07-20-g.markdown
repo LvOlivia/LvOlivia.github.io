@@ -1,0 +1,130 @@
+---
+layout:     post
+title:      "xss攻击"
+date:       2019-07-20
+author:     "Tinger"
+header-img: "/img/about-bg.jpg"
+tags:
+    - 网络安全
+---
+## XSS攻击
+Cross-site scripting，跨站脚本攻击，通常称为：XSS。XSS 简单点来说，就是攻击者想尽一切办法将可以执行的代码注入到网页中。
+
+xss攻击可以分成三种类型：
+
+* 反射型：经过后端，不经过数据库。通过在请求地址上加入恶心的HTML代码。
+
+* 存储型：经过后端，经过数据库。攻击者通过把代码提交到后台数据库中;当用户下次打开的时候就会从后台接收这些恶意的代码。
+
+* DOM型：通过一些api向网站注入一些恶意的HTML代码。
+
+## 反射型案例
+如果页面需要从 URL 中获取某些参数作为内容的话，不经过过滤就会导致攻击代码被执行
+```
+<!-- http://www.domain.com?name=<script>alert(1)</script> -->
+<div>{{name}}</div>   
+```
+页面中弹出了写着"alert(1)"的对话框
+
+可使用**转义字符**来解决问题
+
+首先，对于用户的输入应该是永远不信任的。最普遍的做法就是转义输入输出的内容，对于引号、尖括号、斜杠进行转义
+```
+function escape(str) {
+  str = str.replace(/&/g, '&amp;')
+  str = str.replace(/</g, '&lt;')
+  str = str.replace(/>/g, '&gt;')
+  str = str.replace(/"/g, '&quto;')
+  str = str.replace(/'/g, '&#39;')
+  str = str.replace(/`/g, '&#96;')
+  str = str.replace(/\//g, '&#x2F;')
+  return str
+}
+```
+通过转义可以将攻击代码 <script>alert(1)</script> 变成
+```
+// -> &lt;script&gt;alert(1)&lt;&#x2F;script&gt;
+escape('<script>alert(1)</script>')
+```
+但是，但变成如下情况时
+```
+<!-- http://www.domain.com?name=javascript:alert('XSS') -->
+```
+把这个参数放到a标签中，点击a标签，依然会发生xss攻击。可采用白名单方式解决。
+
+## 存储型案例
+攻击的代码被服务端写入进数据库中，这种攻击危害性很大，因为如果网站访问量很大的话，就会导致大量正常访问页面的用户都受到攻击。
+
+举个例子，对于评论功能来说，就得防范持久型 XSS 攻击，因为我可以在评论中输入以下内容
+```
+<script>alert("123")</script>
+```
+这种情况如果前后端没有做好防御的话，这段评论就会被存储到数据库中，这样每个打开该页面的用户都会被攻击到。
+
+## dom型案例
+```
+<body>
+  <div id="content"></div>
+  <input type="text" id="text" value="" style="width: 500px" />
+  <input type="button" id="submit" value="write" />
+</body>
+<script>
+  document.getElementById('submit').onclick = function() {
+    var str = document.getElementById('text').value;
+    document.getElementById('content').innerHTML =
+      "<a href='" + str + "'>testLink</a>";
+  };
+</script>
+```
+点击“write”按钮后，会在当前页面插入一个超链接，其地址为文本框的内容。在这里，“write”按钮的 onclick 事件触发后，会修改页面的 DOM 节点，通过 innerHTML 把一段用户数据当作 HTML 写入到页面中，这就造成了 DOM Based XSS。
+构造如下数据
+
+onclick=alert(/xss/) // 输入后，页面代码就变成了：
+```
+<a href='onclick=alert(/xss/)' > testLink</a>
+```
+首先用一个单引号闭合掉 href 的第一个单引号，然后插入一个 onclik 事件，最后再用注释符注释掉第二个单引号。点击这个新生成的链接，脚本将被执行。这样一来我们就发起了一次 DOM Based XSS。
+## 防范措施
+1.转义字符和白名单，上面已经提到
+
+2.避免使用innerHTML、document.write()
+
+3.HttpOnly
+
+HttpOnly 是一个设置 cookie 是否可以被 javasript 脚本读取的属性，浏览器将禁止页面的 Javascript 访问带有 HttpOnly 属性的 Cookie。
+
+未设置 HttpOnly 为 true，我们就直接用 document.cookie 获取值。为了防止黑客通过 Javascript 脚本获取 cookie 信息，我们可以将 HttpOnly 开启。
+
+**严格来说，HttpOnly并非为了对抗XSS，HttpOnly解决的是XSS后的Cookie劫持攻击。**
+
+4.输入内容长度控制
+
+对于不受信任的输入，都应该限定一个合理的长度。虽然无法完全防止 XSS 发生，但可以增加 XSS 攻击的难度
+
+5.CSP
+
+CSP：内容安全策略（区别于 同源策略）。简单来说，就是我们能够规定，我们的网站只接受我们指定的请求资源。CSP 的实质就是白名单制度，开发者明确告诉客户端，哪些外部资源可以加载和执行，等同于提供白名单。它的实现和执行全部由浏览器完成，开发者只需提供配置。**启用后，不符合 CSP 的外部资源就会被阻止加载。CSP 大大增强了网页的安全性。攻击者即使发现了漏洞，也没法注入脚本，除非还控制了一台列入了白名单的可信主机。**
+
+通常可以通过两种方式来开启 CSP：
+
+1.设置 HTTP Header 中的 Content-Security-Policy
+
+2.设置 meta 标签的方式 <meta http-equiv="Content-Security-Policy">
+
+**这里以设置 HTTP Header 来举例**
+
+只允许加载本站资源
+```
+Content-Security-Policy: default-src ‘self’
+```
+只允许加载 HTTPS 协议图片
+```
+Content-Security-Policy: img-src https://*
+```
+允许加载任何来源框架
+```
+Content-Security-Policy: child-src 'none'
+```
+当然可以设置的属性远不止这些,具体可查文档
+
+对于这种方式来说，只要开发者配置了正确的规则，那么即使网站存在漏洞，攻击者也不能执行它的攻击代码，并且 CSP 的兼容性也不错。
