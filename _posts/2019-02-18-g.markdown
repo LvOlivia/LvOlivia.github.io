@@ -15,7 +15,7 @@ tags:
 首先，MSL究竟是啥？
 
 消息的最大存活时间(MSL)
-
+<img src="/img/in-post/post/tcp.png"  /> 
 主动断开的一侧为A，被动断开的一侧为B。
 
 第一个消息：A发FIN
