@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "crsf攻击以及一些其他的常见攻击"
+title:      "csrf攻击以及一些其他的常见攻击"
 date:       2019-07-25
 author:     "Tinger"
 header-img: "/img/about-bg.jpg"

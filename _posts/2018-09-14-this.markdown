@@ -12,7 +12,7 @@ tags:
 最近在看《你不知道的js》，就把this的用法做个总结吧
 this其实是在函数被调用时发生的绑定，有下面几种情况
 ### 默认绑定
-规则：在非严格模式下，默认绑定的this指向全局对象，严格模式下this指向undefined）
+规则：在非严格模式下，默认绑定的this指向全局对象，严格模式下this指向undefined
 ```
 function foo() {
   console.log(this.a); // this指向全局对象
