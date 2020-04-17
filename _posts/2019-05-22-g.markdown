@@ -56,7 +56,7 @@ disk cache 会严格根据 HTTP 头信息中的各类字段来判定哪些资源
 * 根据 HTTP 头部的相关字段(Cache-control, Pragma 等)决定是否存入 disk cache
 * memory cache 保存一份资源 的引用，以备下次使用。
 
-## 按失效策略分类
+### 按失效策略分类
 memory cache 是浏览器为了加快读取缓存速度而进行的自身的优化行为，不受开发者控制，也不受 HTTP 协议头的约束，算是一个黑盒。Service Worker 是由开发者编写的额外的脚本，且缓存位置独立，出现也较晚，使用还不算太广泛。所以我们平时最为熟悉的其实是 disk cache，也叫 HTTP cache (因为不像 memory cache，它遵守 HTTP 协议头中的字段)。平时所说的强缓存，协商缓存，以及 Cache-Control 等，也都归于此类。
 
 ### 强缓存
