@@ -1,7 +1,7 @@
-g---
+---
 layout:     post
-title:      "xss攻击"
-date:       2019-07-20
+title:      "xss"
+date:       2019-07-24
 author:     "Tinger"
 header-img: "/img/about-bg.jpg"
 tags:
