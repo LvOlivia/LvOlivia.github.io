@@ -4,6 +4,8 @@
  * Licensed under Apache 2.0 (https://github.com/IronSummitMedia/startbootstrap/blob/gh-pages/LICENSE)
  */
 
+console.log('test2')
+console.log('test3')
 // Tooltip Init
 $(function() {
     $("[data-toggle='tooltip']").tooltip();
