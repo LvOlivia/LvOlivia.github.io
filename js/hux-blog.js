@@ -6,6 +6,7 @@
 
 console.log('test2')
 console.log('test3')
+console.log('test4')
 // Tooltip Init
 $(function() {
     $("[data-toggle='tooltip']").tooltip();
